@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bloomreach-assignment-2';
+  title = 'Bloomreach Assignment 2';
 }

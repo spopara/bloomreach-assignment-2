@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'bloomreach-assignment-2'`, () => {
+  it(`should have as title 'Bloomreach Assignment 2'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('bloomreach-assignment-2');
+    expect(app.title).toEqual('Bloomreach Assignment 2');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('bloomreach-assignment-2 app is running!');
+    expect(compiled.querySelector('header h1')?.textContent).toContain('Bloomreach Assignment 2');
   });
 });
