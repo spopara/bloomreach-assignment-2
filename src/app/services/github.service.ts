@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
-import { DateUtils } from '../utils/date-utils';
 
 export interface GithubCommit {
   commit: {
