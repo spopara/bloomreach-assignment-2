@@ -20,7 +20,12 @@ export class CommitListComponent implements OnInit {
         GITHUB_REPO_VSCODE
       )
       .subscribe((commits) => {
-        this.commits = commits;
+        this.commits = commits.sort((a, b) => {
+          return (
+            new Date(b.commit.author.date).getTime() -
+            new Date(a.commit.author.date).getTime()
+          );
+        });
       });
   }
 }

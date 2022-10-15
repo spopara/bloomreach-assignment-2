@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { GithubCommit, GithubService } from 'src/app/services/github.service';
+import { CommitListItemComponent } from '../commit-list-item/commit-list-item.component';
 import { CommitListComponent } from './commit-list.component';
 
 const dummyCommitArray: GithubCommit[] = [
@@ -9,23 +10,24 @@ const dummyCommitArray: GithubCommit[] = [
     commit: {
       message: 'Some commit message 1',
       author: {
-        name: 'Name Surname',
-        email: 'name.surname@mail.com',
+        name: 'Name Surname 1',
+        email: 'name.surname1@mail.com',
         date: new Date('2022-10-15T06:27:26Z'),
       },
     },
   },
   {
     commit: {
-      message: 'Some commit message 1',
+      message: 'Some commit message 2',
       author: {
-        name: 'Name Surname',
-        email: 'name.surname@mail.com',
-        date: new Date('2022-10-15T06:27:26Z'),
+        name: 'Name Surname 2',
+        email: 'name.surname2@mail.com',
+        date: new Date('2022-10-16T06:27:26Z'),
       },
     },
   },
 ];
+const dummyCommitArrayCopy = [...dummyCommitArray];
 let fakeGithubService: GithubService;
 
 describe('CommitListComponent', () => {
@@ -37,7 +39,7 @@ describe('CommitListComponent', () => {
       getCommits: of(dummyCommitArray),
     });
     await TestBed.configureTestingModule({
-      declarations: [CommitListComponent],
+      declarations: [CommitListComponent, CommitListItemComponent],
       imports: [HttpClientTestingModule],
       providers: [
         {
@@ -68,5 +70,9 @@ describe('CommitListComponent', () => {
   it('should render list of commits', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('app-commit-list-item')?.length).toBe(2);
+  });
+
+  it('should sort the list of commits', () => {
+    expect(component.commits).toEqual(dummyCommitArrayCopy.reverse());
   });
 });
