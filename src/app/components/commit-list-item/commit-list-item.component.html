@@ -16,6 +16,13 @@
     id="commit-list-item-icon"
     class="p-2 flex justify-center items-center text-pink-600 border-r border-t border-b border-gray-800 rounded-tr rounded-br cursor-pointer"
     title="Expand commit"
+    role="button"
+    [attr.aria-label]="
+      'Expand commit from ' +
+      commit.commit.author.name +
+      ' on ' +
+      commit.commit.committer.date
+    "
     (click)="handleExpandCommitClick()"
   >
     <svg

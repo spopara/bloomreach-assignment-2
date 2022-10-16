@@ -12,6 +12,7 @@
           'pointer-events-none border-gray-300': currentPage <= 1,
           'border-pink-600': currentPage > 1
         }"
+        aria-label="Previous"
         (click)="handlePreviousClick()"
       >
         <!-- Heroicon name: mini/chevron-left -->
@@ -46,6 +47,7 @@
           'pointer-events-none border-gray-300': nextDisabled,
           'border-pink-600': !nextDisabled
         }"
+        aria-label="Next"
         (click)="handleNextClick()"
       >
         <!-- Heroicon name: mini/chevron-right -->
