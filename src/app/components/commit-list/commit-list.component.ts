@@ -56,7 +56,7 @@ export class CommitListComponent implements OnInit {
         this.currentPage--;
         break;
     }
-
+    window.scrollTo(0, 0);
     this.fetchCommits(this.selectedDate, this.currentPage);
   }
 }
