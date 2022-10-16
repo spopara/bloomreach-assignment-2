@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CommitListItemComponent } from './components/commit-list-item/commit-list-item.component';
 import { CommitListComponent } from './components/commit-list/commit-list.component';
+import { CommitDetailsComponent } from './components/commit-details/commit-details.component';
 
 @NgModule({
-  declarations: [AppComponent, CommitListComponent, CommitListItemComponent],
+  declarations: [AppComponent, CommitListComponent, CommitListItemComponent, CommitDetailsComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

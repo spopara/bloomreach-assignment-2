@@ -3,5 +3,6 @@
 </header>
 
 <main>
-  <app-commit-list></app-commit-list>
+  <app-commit-list *ngIf="!selectedCommit"></app-commit-list>
+  <app-commit-details *ngIf="selectedCommit"></app-commit-details>
 </main>

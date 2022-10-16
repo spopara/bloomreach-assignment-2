@@ -1,15 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GithubCommit, GithubService } from './services/github.service';
+import { GithubCommit, GithubService } from 'src/app/services/github.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-commit-details',
+  templateUrl: './commit-details.component.html',
+  styleUrls: ['./commit-details.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class CommitDetailsComponent implements OnInit {
   private subs = new Subscription();
-  readonly title = 'Bloomreach Assignment 2';
   selectedCommit: GithubCommit | null | undefined;
 
   constructor(private githubService: GithubService) {}
