@@ -1,5 +1,5 @@
 <section>
-  <div class="px-4 cursor-pointer">
+  <div class="m-4 text-pink-600 cursor-pointer">
     <svg
       id="commit-details-back"
       xmlns="http://www.w3.org/2000/svg"
@@ -19,50 +19,55 @@
     </svg>
   </div>
 
-  <div class="m-16 overflow-hidden bg-white shadow sm:rounded-lg">
-    <div class="px-4 py-5 sm:px-6">
+  <div class="mx-16 bg-white overflow-hidden">
+    <div class="px-4 py-5 sm:px-6 bg-gray-800 rounded-tl-lg rounded-tr-lg">
       <h3
         id="commit-details-name"
-        class="text-lg font-medium leading-6 text-gray-900"
+        class="text-lg font-medium leading-6 text-white"
       >
         {{ selectedCommit?.commit?.author?.name }}
       </h3>
-      <p id="commit-details-email" class="mt-1 max-w-2xl text-sm text-gray-500">
+      <p id="commit-details-email" class="mt-1 max-w-2xl text-sm text-gray-300">
         {{ selectedCommit?.commit?.author?.email }}
       </p>
-      <p id="commit-details-date" class="mt-1 max-w-2xl text-sm text-gray-500">
+      <p id="commit-details-date" class="mt-1 max-w-2xl text-sm text-gray-300">
         {{ selectedCommit?.commit?.committer?.date | date }}
       </p>
     </div>
     <div class="border-t border-gray-200">
       <dl>
         <div
-          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r border-gray-800"
         >
           <dt class="text-sm font-medium text-gray-500">SHA</dt>
           <dd
             id="commit-details-sha"
-            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"
+            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 overflow-hidden overflow-ellipsis"
+            [title]="selectedCommit?.sha"
           >
             {{ selectedCommit?.sha }}
           </dd>
         </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div
+          class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r border-gray-800"
+        >
           <dt class="text-sm font-medium text-gray-500">Message</dt>
           <dd
             id="commit-details-message"
-            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"
+            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 overflow-hidden overflow-ellipsis whitespace-pre-wrap"
+            [title]="selectedCommit?.commit?.message"
           >
             {{ selectedCommit?.commit?.message }}
           </dd>
         </div>
         <div
-          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r rounded-bl-lg rounded-br-lg border-gray-800"
         >
           <dt class="text-sm font-medium text-gray-500">URL</dt>
           <dd
             id="commit-details-url"
-            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"
+            class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 overflow-hidden overflow-ellipsis"
+            [title]="selectedCommit?.commit?.url"
           >
             {{ selectedCommit?.commit?.url }}
           </dd>
