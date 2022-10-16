@@ -13,7 +13,6 @@ describe('GithubService', () => {
   const dummyRepoName = 'test/repo';
   let service: GithubService;
   let httpController: HttpTestingController;
-
   const dummyCommitArray: GithubCommit[] = [TestUtils.createGithubCommit()];
 
   beforeEach(() => {
