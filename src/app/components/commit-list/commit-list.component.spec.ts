@@ -8,15 +8,14 @@ import { CommitListComponent } from './commit-list.component';
 
 const dummyCommitArray: GithubCommit[] = [
   TestUtils.createGithubCommit(
-    new Date('2022-10-15T06:27:26Z'),
+    new Date('2022-10-16T06:27:26Z'),
     'Some commit message 1'
   ),
   TestUtils.createGithubCommit(
-    new Date('2022-10-16T06:27:26Z'),
+    new Date('2022-10-15T06:27:26Z'),
     'Some commit message 2'
   ),
 ];
-const dummyCommitArrayCopy = [...dummyCommitArray];
 let fakeGithubService: GithubService;
 
 describe('CommitListComponent', () => {
@@ -64,10 +63,6 @@ describe('CommitListComponent', () => {
   it('should render date picker', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('input[type="date"]')).toBeTruthy();
-  });
-
-  it('should sort the list of commits', () => {
-    expect(component.commits).toEqual(dummyCommitArrayCopy.reverse());
   });
 
   it('should increment page on next', () => {

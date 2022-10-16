@@ -34,32 +34,23 @@ export class CommitListComponent implements OnInit {
 
   fetchCommits(since: string, page: number): void {
     this.githubService
-      .getCommits(
-        DateUtils.createDateWithTime(since),
-        page,
-        GITHUB_REPO_VSCODE
-      )
+      .getCommits(DateUtils.createDateWithTime(since), page, GITHUB_REPO_VSCODE)
       .subscribe((commits) => {
         this.nextDisabled = commits.length < ITEMS_PER_PAGE;
-        this.commits = commits.sort((a, b) => {
-          return (
-            new Date(b.commit.committer.date).getTime() -
-            new Date(a.commit.committer.date).getTime()
-          );
-        });
+        this.commits = commits;
       });
   }
 
   handlePageChanged(direction: 'next' | 'previous'): void {
     switch (direction) {
       case 'next':
-        if(this.nextDisabled) {
+        if (this.nextDisabled) {
           return;
         }
         this.currentPage++;
         break;
       case 'previous':
-        if(this.currentPage <= 1) {
+        if (this.currentPage <= 1) {
           return;
         }
         this.currentPage--;
