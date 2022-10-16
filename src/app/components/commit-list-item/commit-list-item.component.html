@@ -1,9 +1,20 @@
 <li class="flex">
-  <div class="p-2 border" [title]="commit.commit.committer.date">
+  <div
+    id="commit-list-item-date"
+    class="p-2 border"
+    [title]="commit.commit.committer.date"
+  >
     {{ commit.commit.committer.date | date }}
   </div>
-  <div class="p-2 flex-1 border">{{ commit.commit.message }}</div>
-  <div class="p-2 border cursor-pointer" title="Expand commit" (click)="handleExpandCommitClick()">
+  <div id="commit-list-item-message" class="p-2 flex-1 border">
+    {{ commit.commit.message }}
+  </div>
+  <div
+    id="commit-list-item-icon"
+    class="p-2 border cursor-pointer"
+    title="Expand commit"
+    (click)="handleExpandCommitClick()"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
