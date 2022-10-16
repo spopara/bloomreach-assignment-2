@@ -51,7 +51,7 @@ export class GithubService {
     );
   }
 
-  selectCommit(commit: GithubCommit): void {
-    this._selectedCommit.next(Object.assign({}, commit));
+  selectCommit(commit: GithubCommit | null): void {
+    this._selectedCommit.next(commit && Object.assign({}, commit));
   }
 }

@@ -24,4 +24,8 @@ export class CommitDetailsComponent implements OnInit {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+  handleBackClick(): void {
+    this.githubService.selectCommit(null);
+  }
 }
