@@ -8,15 +8,28 @@ import { DateUtils } from 'src/app/utils/date-utils';
   templateUrl: './commit-list.component.html',
 })
 export class CommitListComponent implements OnInit {
+  currentDate = DateUtils.createDateWithoutTime(new Date());
+  selectedDate = DateUtils.createDateWithoutTime(
+    DateUtils.getFirstDayOfCurrentMonth()
+  );
   repo = GITHUB_REPO_VSCODE;
   commits: GithubCommit[] = [];
 
   constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
+    this.fetchCommits(this.selectedDate);
+  }
+
+  onDateChanged(event: EventTarget | null): void {
+    this.selectedDate = (event as HTMLInputElement).value;
+    this.fetchCommits(this.selectedDate);
+  }
+
+  fetchCommits(since: string): void {
     this.githubService
       .getCommits(
-        DateUtils.getFirstDayOfCurrentMonth().toISOString(),
+        DateUtils.createDateWithTime(since),
         GITHUB_REPO_VSCODE
       )
       .subscribe((commits) => {
