@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
+import {
+  GITHUB_BASE_URL,
+  GITHUB_VSCODE_REPO,
+  ITEMS_PER_PAGE,
+} from '../constants/constants';
 
 export interface GithubCommit {
   sha: string;
@@ -39,6 +43,7 @@ export class GithubService {
    */
   getCommits(
     since: string,
+    page = 1,
     repo = GITHUB_VSCODE_REPO
   ): Observable<GithubCommit[]> {
     return this.http.get<GithubCommit[]>(
@@ -46,6 +51,8 @@ export class GithubService {
       {
         params: {
           since,
+          page,
+          per_page: ITEMS_PER_PAGE,
         },
       }
     );

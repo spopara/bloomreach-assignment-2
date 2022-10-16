@@ -69,4 +69,30 @@ describe('CommitListComponent', () => {
   it('should sort the list of commits', () => {
     expect(component.commits).toEqual(dummyCommitArrayCopy.reverse());
   });
+
+  it('should increment page on next', () => {
+    component.currentPage = 5;
+    component.nextDisabled = false;
+    component.handlePageChanged('next');
+    expect(component.currentPage).toEqual(6);
+  });
+
+  it('should decrement page on previous', () => {
+    component.currentPage = 5;
+    component.handlePageChanged('previous');
+    expect(component.currentPage).toEqual(4);
+  });
+
+  it('should NOT increment page when next is disabled', () => {
+    component.currentPage = 5;
+    component.nextDisabled = true;
+    component.handlePageChanged('next');
+    expect(component.currentPage).toEqual(5);
+  });
+
+  it('should NOT decrement page when on first page', () => {
+    component.currentPage = 1;
+    component.handlePageChanged('previous');
+    expect(component.currentPage).toEqual(1);
+  });
 });

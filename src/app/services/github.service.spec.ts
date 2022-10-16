@@ -42,7 +42,7 @@ describe('GithubService', () => {
   });
 
   it('should call getCommits and return an array of Commits with provided repo', () => {
-    service.getCommits(dummyISODate, dummyRepoName).subscribe((res) => {
+    service.getCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
       expect(res).toEqual(dummyCommitArray);
     });
 
@@ -55,14 +55,14 @@ describe('GithubService', () => {
     req.flush(dummyCommitArray);
   });
 
-  it('should call getCommits and return an array of commits with provided repo and since date', () => {
-    service.getCommits(dummyISODate, dummyRepoName).subscribe((res) => {
+  it('should call getCommits and return an array of commits with provided repo, since date, page, and per_page', () => {
+    service.getCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
       expect(res).toEqual(dummyCommitArray);
     });
 
     const req = httpController.expectOne((req) => {
       return req.urlWithParams.endsWith(
-        `${GITHUB_BASE_URL}/repos/${dummyRepoName}/commits?since=${dummyISODate}`
+        `${GITHUB_BASE_URL}/repos/${dummyRepoName}/commits?since=${dummyISODate}&page=1&per_page=10`
       );
     });
 

@@ -1,7 +1,8 @@
 <section>
   <h2 class="text-center">Commit messages of VS CODE ({{ repo }})</h2>
+
   <div class="p-2 flex justify-end">
-    <label class="pr-2" for="since-date">Show commit since:</label>
+    <label class="pr-2" for="since-date">Show commits since:</label>
     <input
       id="since-date"
       class="text-pink-600"
@@ -11,10 +12,17 @@
       (change)="handleDateChanged($event.target)"
     />
   </div>
+
   <ul>
     <app-commit-list-item
       *ngFor="let commit of commits"
       [commit]="commit"
     ></app-commit-list-item>
   </ul>
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [nextDisabled]="nextDisabled"
+    (paginationEmmiter)="handlePageChanged($event)"
+  ></app-pagination>
 </section>
