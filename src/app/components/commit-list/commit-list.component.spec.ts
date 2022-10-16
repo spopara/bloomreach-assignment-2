@@ -2,30 +2,19 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { GithubCommit, GithubService } from 'src/app/services/github.service';
+import { TestUtils } from 'src/app/utils/test-utils';
 import { CommitListItemComponent } from '../commit-list-item/commit-list-item.component';
 import { CommitListComponent } from './commit-list.component';
 
 const dummyCommitArray: GithubCommit[] = [
-  {
-    commit: {
-      message: 'Some commit message 1',
-      committer: {
-        name: 'Name Surname 1',
-        email: 'name.surname1@mail.com',
-        date: new Date('2022-10-15T06:27:26Z'),
-      },
-    },
-  },
-  {
-    commit: {
-      message: 'Some commit message 2',
-      committer: {
-        name: 'Name Surname 2',
-        email: 'name.surname2@mail.com',
-        date: new Date('2022-10-16T06:27:26Z'),
-      },
-    },
-  },
+  TestUtils.createGithubCommit(
+    new Date('2022-10-15T06:27:26Z'),
+    'Some commit message 1'
+  ),
+  TestUtils.createGithubCommit(
+    new Date('2022-10-16T06:27:26Z'),
+    'Some commit message 2'
+  ),
 ];
 const dummyCommitArrayCopy = [...dummyCommitArray];
 let fakeGithubService: GithubService;

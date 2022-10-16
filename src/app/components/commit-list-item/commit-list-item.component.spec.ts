@@ -1,22 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GithubCommit } from 'src/app/services/github.service';
+import { TestUtils } from 'src/app/utils/test-utils';
 
 import { CommitListItemComponent } from './commit-list-item.component';
 
 describe('CommitListItemComponent', () => {
   const dummyMessage = 'Some commit message 1';
   const dummyDate = new Date('2022-10-15T06:27:26Z');
-  const dummyCommit: GithubCommit = {
-    commit: {
-      message: dummyMessage,
-      committer: {
-        name: 'Name Surname',
-        email: 'name.surname@mail.com',
-        date: dummyDate,
-      },
-    },
-  };
+  const dummyCommit: GithubCommit = TestUtils.createGithubCommit(dummyDate, dummyMessage);
   let component: CommitListItemComponent;
   let fixture: ComponentFixture<CommitListItemComponent>;
 

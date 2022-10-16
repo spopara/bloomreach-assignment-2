@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
 
 export interface GithubCommit {
+  sha: string;
   commit: {
     message: string;
     committer: {
@@ -11,6 +12,12 @@ export interface GithubCommit {
       email: string;
       date: Date;
     };
+    author: {
+      name: string;
+      email: string;
+      date: Date;
+    };
+    url: string;
   };
 }
 

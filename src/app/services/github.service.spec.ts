@@ -4,6 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
+import { TestUtils } from '../utils/test-utils';
 
 import { GithubCommit, GithubService } from './github.service';
 
@@ -13,18 +14,7 @@ describe('GithubService', () => {
   let service: GithubService;
   let httpController: HttpTestingController;
 
-  const dummyCommitArray: GithubCommit[] = [
-    {
-      commit: {
-        message: 'Some commit message 1',
-        committer: {
-          name: 'Name Surname',
-          email: 'name.surname@mail.com',
-          date: new Date('2022-10-15T06:27:26Z'),
-        },
-      },
-    },
-  ];
+  const dummyCommitArray: GithubCommit[] = [TestUtils.createGithubCommit()];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
