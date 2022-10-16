@@ -3,6 +3,6 @@
 </header>
 
 <main class="p-4">
-  <app-commit-list *ngIf="!selectedCommit"></app-commit-list>
-  <app-commit-details *ngIf="selectedCommit"></app-commit-details>
+  <app-commit-list [hidden]="selectedCommit"></app-commit-list>
+  <app-commit-details [hidden]="!selectedCommit"></app-commit-details>
 </main>
