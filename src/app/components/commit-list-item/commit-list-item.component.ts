@@ -12,7 +12,7 @@ export class CommitListItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleClick(): void {
+  handleExpandCommitClick(): void {
     this.githubService.selectCommit(this.commit);
   }
 }

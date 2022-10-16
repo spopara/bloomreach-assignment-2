@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GithubCommit } from 'src/app/services/github.service';
 
@@ -22,6 +23,7 @@ describe('CommitListItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CommitListItemComponent],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
   });
 
@@ -38,12 +40,16 @@ describe('CommitListItemComponent', () => {
 
   it('should have date title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('li div:nth-child(1)')?.getAttribute('title')).toContain(dummyDate);
+    expect(
+      compiled.querySelector('li div:nth-child(1)')?.getAttribute('title')
+    ).toContain(dummyDate);
   });
 
   it('should render the commit message', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('li div:nth-child(2)')?.textContent).toContain(dummyMessage);
+    expect(
+      compiled.querySelector('li div:nth-child(2)')?.textContent
+    ).toContain(dummyMessage);
   });
 
   it('should render the expand commit icon', () => {

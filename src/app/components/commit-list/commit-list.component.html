@@ -2,7 +2,13 @@
   <h2 class="text-center">Commit messages of VS CODE ({{ repo }})</h2>
   <div class="p-2 flex justify-end">
     <label class="pr-2" for="since-date">Show commit since:</label>
-    <input id="since-date" type="date" [max]="currentDate" [value]="selectedDate" (change)="onDateChanged($event.target)"/>
+    <input
+      id="since-date"
+      type="date"
+      [max]="currentDate"
+      [value]="selectedDate"
+      (change)="handleDateChanged($event.target)"
+    />
   </div>
   <ul>
     <app-commit-list-item

@@ -72,6 +72,11 @@ describe('CommitListComponent', () => {
     expect(compiled.querySelectorAll('app-commit-list-item')?.length).toBe(2);
   });
 
+  it('should render date picker', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('input[type="date"]')).toBeTruthy();
+  });
+
   it('should sort the list of commits', () => {
     expect(component.commits).toEqual(dummyCommitArrayCopy.reverse());
   });

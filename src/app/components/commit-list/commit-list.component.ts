@@ -21,17 +21,14 @@ export class CommitListComponent implements OnInit {
     this.fetchCommits(this.selectedDate);
   }
 
-  onDateChanged(event: EventTarget | null): void {
+  handleDateChanged(event: EventTarget | null): void {
     this.selectedDate = (event as HTMLInputElement).value;
     this.fetchCommits(this.selectedDate);
   }
 
   fetchCommits(since: string): void {
     this.githubService
-      .getCommits(
-        DateUtils.createDateWithTime(since),
-        GITHUB_REPO_VSCODE
-      )
+      .getCommits(DateUtils.createDateWithTime(since), GITHUB_REPO_VSCODE)
       .subscribe((commits) => {
         this.commits = commits.sort((a, b) => {
           return (
