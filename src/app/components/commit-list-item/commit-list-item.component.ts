@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GithubCommit } from 'src/app/services/github.service';
+import { GithubCommit, GithubService } from 'src/app/services/github.service';
 
 @Component({
   selector: 'app-commit-list-item',
@@ -8,7 +8,11 @@ import { GithubCommit } from 'src/app/services/github.service';
 export class CommitListItemComponent implements OnInit {
   @Input() commit!: GithubCommit;
 
-  constructor() {}
+  constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {}
+
+  handleClick(): void {
+    this.githubService.selectCommit(this.commit);
+  }
 }

@@ -3,7 +3,7 @@
     {{ commit.commit.committer.date | date }}
   </div>
   <div class="p-2 flex-1 border">{{ commit.commit.message }}</div>
-  <div class="p-2 border cursor-pointer" title="Expand commit">
+  <div class="p-2 border cursor-pointer" title="Expand commit" (click)="handleClick()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

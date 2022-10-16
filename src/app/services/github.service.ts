@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
 
 export interface GithubCommit {
@@ -17,6 +18,9 @@ export interface GithubCommit {
   providedIn: 'root',
 })
 export class GithubService {
+  private _selectedCommit = new BehaviorSubject<GithubCommit | null>(null);
+  readonly selectedCommit$ = this._selectedCommit.asObservable();
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -26,7 +30,10 @@ export class GithubService {
    * @param since - ISO timestamp since when to query
    * @returns - observable representing the list of commits
    */
-  getCommits(since: string, repo = GITHUB_VSCODE_REPO) {
+  getCommits(
+    since: string,
+    repo = GITHUB_VSCODE_REPO
+  ): Observable<GithubCommit[]> {
     return this.http.get<GithubCommit[]>(
       `${GITHUB_BASE_URL}/repos/${repo}/commits`,
       {
@@ -35,5 +42,9 @@ export class GithubService {
         },
       }
     );
+  }
+
+  selectCommit(commit: GithubCommit): void {
+    this._selectedCommit.next(Object.assign({}, commit));
   }
 }
