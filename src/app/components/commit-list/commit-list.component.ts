@@ -35,8 +35,8 @@ export class CommitListComponent implements OnInit {
       .subscribe((commits) => {
         this.commits = commits.sort((a, b) => {
           return (
-            new Date(b.commit.author.date).getTime() -
-            new Date(a.commit.author.date).getTime()
+            new Date(b.commit.committer.date).getTime() -
+            new Date(a.commit.committer.date).getTime()
           );
         });
       });

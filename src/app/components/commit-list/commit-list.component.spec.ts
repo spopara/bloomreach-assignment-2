@@ -9,7 +9,7 @@ const dummyCommitArray: GithubCommit[] = [
   {
     commit: {
       message: 'Some commit message 1',
-      author: {
+      committer: {
         name: 'Name Surname 1',
         email: 'name.surname1@mail.com',
         date: new Date('2022-10-15T06:27:26Z'),
@@ -19,7 +19,7 @@ const dummyCommitArray: GithubCommit[] = [
   {
     commit: {
       message: 'Some commit message 2',
-      author: {
+      committer: {
         name: 'Name Surname 2',
         email: 'name.surname2@mail.com',
         date: new Date('2022-10-16T06:27:26Z'),

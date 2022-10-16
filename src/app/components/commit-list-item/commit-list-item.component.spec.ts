@@ -9,7 +9,7 @@ describe('CommitListItemComponent', () => {
   const dummyCommit: GithubCommit = {
     commit: {
       message: dummyMessage,
-      author: {
+      committer: {
         name: 'Name Surname',
         email: 'name.surname@mail.com',
         date: dummyDate,

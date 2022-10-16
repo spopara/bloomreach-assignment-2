@@ -1,6 +1,6 @@
 <li class="flex">
-  <div class="p-2 border" [title]="commit.commit.author.date">
-    {{ commit.commit.author.date | date }}
+  <div class="p-2 border" [title]="commit.commit.committer.date">
+    {{ commit.commit.committer.date | date }}
   </div>
   <div class="p-2 flex-1 border">{{ commit.commit.message }}</div>
   <div class="p-2 border cursor-pointer" title="Expand commit">

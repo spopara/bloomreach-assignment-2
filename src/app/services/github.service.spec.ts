@@ -17,7 +17,7 @@ describe('GithubService', () => {
     {
       commit: {
         message: 'Some commit message 1',
-        author: {
+        committer: {
           name: 'Name Surname',
           email: 'name.surname@mail.com',
           date: new Date('2022-10-15T06:27:26Z'),

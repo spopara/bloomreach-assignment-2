@@ -5,7 +5,7 @@ import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
 export interface GithubCommit {
   commit: {
     message: string;
-    author: {
+    committer: {
       name: string;
       email: string;
       date: Date;
