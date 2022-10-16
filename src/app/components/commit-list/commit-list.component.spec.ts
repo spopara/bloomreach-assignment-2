@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { GithubCommit, GithubService } from 'src/app/services/github.service';
 import { TestUtils } from 'src/app/utils/test-utils';
@@ -90,4 +90,18 @@ describe('CommitListComponent', () => {
     component.handlePageChanged('previous');
     expect(component.currentPage).toEqual(1);
   });
+
+  it('should reset to first page on date change', () => {
+    component.currentPage = 5;
+    const event = { value: '12-12-2020' } as unknown as EventTarget;
+    component.handleDateChanged(event);
+    expect(component.currentPage).toEqual(1);
+  });
+
+  it('should call fetchCommits on date change', fakeAsync(() => {
+    spyOn(component, 'fetchCommits');
+    const event = { value: '12-12-2020' } as unknown as EventTarget;
+    component.handleDateChanged(event);
+    expect(component.fetchCommits).toHaveBeenCalled();
+  }));
 });
