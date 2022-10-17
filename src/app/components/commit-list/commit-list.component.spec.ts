@@ -97,7 +97,7 @@ describe('CommitListComponent', () => {
     expect(component.currentPage).toEqual(1);
   });
 
-  it('should call fetchCommits on date change', fakeAsync(() => {
+  it('should call get commits on date change', fakeAsync(() => {
     spyOn(component, 'getCommits');
     const event = { value: '12-12-2020' } as unknown as EventTarget;
     component.handleDateChanged(event);

@@ -57,7 +57,7 @@ describe('CommitListItemComponent', () => {
     expect(compiled.querySelector('#commit-list-item-icon svg')).toBeTruthy();
   });
 
-  it('should call handleExpandCommitClick on expand icon click', fakeAsync(() => {
+  it('should handle event on expand icon click', fakeAsync(() => {
     spyOn(component, 'handleExpandCommitClick');
     fixture.debugElement.nativeElement
       .querySelector('#commit-list-item-icon')

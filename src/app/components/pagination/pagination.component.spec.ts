@@ -35,7 +35,7 @@ describe('PaginationComponent', () => {
     ).toContain('Showing page: 20');
   });
 
-  it('should call handlePreviousClick on previous button click', fakeAsync(() => {
+  it('should handle event on previous button click', fakeAsync(() => {
     spyOn(component, 'handlePreviousClick');
     fixture.debugElement.nativeElement
       .querySelector('#pagination-previous')
@@ -44,7 +44,7 @@ describe('PaginationComponent', () => {
     expect(component.handlePreviousClick).toHaveBeenCalled();
   }));
 
-  it('should call handleNextClick on next button click', fakeAsync(() => {
+  it('should handle event on next button click', fakeAsync(() => {
     spyOn(component, 'handleNextClick');
     fixture.debugElement.nativeElement
       .querySelector('#pagination-next')
@@ -52,4 +52,18 @@ describe('PaginationComponent', () => {
     tick();
     expect(component.handleNextClick).toHaveBeenCalled();
   }));
+
+  it('should disable next button', () => {
+    component.nextDisabled = true;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('#pagination-next.pointer-events-none')).toBeTruthy();
+  });
+
+  it('should disable previous button', () => {
+    component.currentPage = 1;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('#pagination-previous.pointer-events-none')).toBeTruthy();
+  });
 });
