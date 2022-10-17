@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   GITHUB_BASE_URL,
-  GITHUB_VSCODE_REPO,
+  GITHUB_REPO_VSCODE,
   ITEMS_PER_PAGE,
 } from '../constants/constants';
 
@@ -35,16 +35,16 @@ export class GithubService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Gets a list of commits from give repo.
+   * Gets a list of commits from given repo.
    *
    * @param repo - the repo to query for commits
    * @param since - ISO timestamp since when to query
    * @returns - observable representing the list of commits
    */
-  getCommits(
+  fetchCommits(
     since: string,
     page = 1,
-    repo = GITHUB_VSCODE_REPO
+    repo = GITHUB_REPO_VSCODE
   ): Observable<GithubCommit[]> {
     return this.http.get<GithubCommit[]>(
       `${GITHUB_BASE_URL}/repos/${repo}/commits`,

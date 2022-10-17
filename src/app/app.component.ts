@@ -8,7 +8,7 @@ import { GithubCommit, GithubService } from './services/github.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private subs = new Subscription();
+  private readonly subs = new Subscription();
   readonly title = 'Bloomreach Assignment 2';
   selectedCommit: GithubCommit | null | undefined;
 

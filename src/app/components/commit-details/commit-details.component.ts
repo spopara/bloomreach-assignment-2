@@ -14,8 +14,8 @@ export class CommitDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subs.add(
-      this.githubService.selectedCommit$.subscribe((commit) => {
-        this.selectedCommit = commit;
+      this.githubService.selectedCommit$.subscribe((selectedCommit) => {
+        this.selectedCommit = selectedCommit;
       })
     );
   }

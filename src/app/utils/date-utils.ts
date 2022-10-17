@@ -16,9 +16,9 @@ export class DateUtils {
   }
 
   /**
-   * Gets date without time component.
+   * Creates date without time component.
    *
-   * @returns - date as string
+   * @returns - a date as ISO string without the time component
    */
   static createDateWithoutTime(date: Date): string {
     return date.toISOString().substring(0, 10);

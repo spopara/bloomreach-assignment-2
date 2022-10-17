@@ -6,25 +6,24 @@ import { TestUtils } from 'src/app/utils/test-utils';
 import { CommitListItemComponent } from '../commit-list-item/commit-list-item.component';
 import { CommitListComponent } from './commit-list.component';
 
-const dummyCommitArray: GithubCommit[] = [
-  TestUtils.createGithubCommit(
-    new Date('2022-10-16T06:27:26Z'),
-    'Some commit message 1'
-  ),
-  TestUtils.createGithubCommit(
-    new Date('2022-10-15T06:27:26Z'),
-    'Some commit message 2'
-  ),
-];
-let fakeGithubService: GithubService;
-
 describe('CommitListComponent', () => {
+  const dummyCommitArray: GithubCommit[] = [
+    TestUtils.createGithubCommit(
+      new Date('2022-10-16T06:27:26Z'),
+      'Some commit message 1'
+    ),
+    TestUtils.createGithubCommit(
+      new Date('2022-10-15T06:27:26Z'),
+      'Some commit message 2'
+    ),
+  ];
+  let fakeGithubService: GithubService;
   let component: CommitListComponent;
   let fixture: ComponentFixture<CommitListComponent>;
 
   beforeEach(async () => {
     fakeGithubService = jasmine.createSpyObj<GithubService>('GithubService', {
-      getCommits: of(dummyCommitArray),
+      fetchCommits: of(dummyCommitArray),
     });
     await TestBed.configureTestingModule({
       declarations: [CommitListComponent, CommitListItemComponent],
@@ -99,9 +98,9 @@ describe('CommitListComponent', () => {
   });
 
   it('should call fetchCommits on date change', fakeAsync(() => {
-    spyOn(component, 'fetchCommits');
+    spyOn(component, 'getCommits');
     const event = { value: '12-12-2020' } as unknown as EventTarget;
     component.handleDateChanged(event);
-    expect(component.fetchCommits).toHaveBeenCalled();
+    expect(component.getCommits).toHaveBeenCalled();
   }));
 });

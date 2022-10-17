@@ -3,7 +3,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { GITHUB_BASE_URL, GITHUB_VSCODE_REPO } from '../constants/constants';
+import { GITHUB_BASE_URL, GITHUB_REPO_VSCODE } from '../constants/constants';
 import { TestUtils } from '../utils/test-utils';
 
 import { GithubCommit, GithubService } from './github.service';
@@ -28,13 +28,13 @@ describe('GithubService', () => {
   });
 
   it('should call getCommits and return an array of Commits with default repo', () => {
-    service.getCommits(dummyISODate).subscribe((res) => {
+    service.fetchCommits(dummyISODate).subscribe((res) => {
       expect(res).toEqual(dummyCommitArray);
     });
 
     const req = httpController.expectOne((req) => {
       return req.urlWithParams.startsWith(
-        `${GITHUB_BASE_URL}/repos/${GITHUB_VSCODE_REPO}/commits?since=`
+        `${GITHUB_BASE_URL}/repos/${GITHUB_REPO_VSCODE}/commits?since=`
       );
     });
 
@@ -42,7 +42,7 @@ describe('GithubService', () => {
   });
 
   it('should call getCommits and return an array of Commits with provided repo', () => {
-    service.getCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
+    service.fetchCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
       expect(res).toEqual(dummyCommitArray);
     });
 
@@ -56,7 +56,7 @@ describe('GithubService', () => {
   });
 
   it('should call getCommits and return an array of commits with provided repo, since date, page, and per_page', () => {
-    service.getCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
+    service.fetchCommits(dummyISODate, 1, dummyRepoName).subscribe((res) => {
       expect(res).toEqual(dummyCommitArray);
     });
 
