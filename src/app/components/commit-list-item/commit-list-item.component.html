@@ -1,4 +1,5 @@
 <li class="m-1 flex overflow-hidden">
+  <!-- DATE -->
   <div
     id="commit-list-item-date"
     class="p-2 bg-gray-800 text-white border border-gray-800 rounded-tl rounded-bl"
@@ -6,12 +7,16 @@
   >
     {{ commit.commit.committer.date | date }}
   </div>
+
+  <!-- COMMIT MESSAGE -->
   <div
     id="commit-list-item-message"
     class="p-2 flex-1 border border-gray-800 whitespace-pre-wrap"
   >
     {{ commit.commit.message }}
   </div>
+
+  <!-- EXPAND CONTROL -->
   <div
     id="commit-list-item-icon"
     class="p-2 flex justify-center items-center text-pink-600 border-r border-t border-b border-gray-800 rounded-tr rounded-br cursor-pointer"

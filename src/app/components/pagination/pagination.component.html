@@ -1,74 +1,77 @@
 <div class="p-4 flex items-center justify-center">
-  <div>
-    <nav
-      class="isolate inline-flex -space-x-px rounded-md shadow-sm"
-      aria-label="Pagination"
+  <nav
+    class="isolate inline-flex -space-x-px rounded-md shadow-sm"
+    aria-label="Pagination"
+  >
+    <!-- PREVIOUS BUTTON -->
+    <button
+      id="pagination-previous"
+      href="#"
+      class="relative inline-flex items-center rounded-l-md border bg-white px-2 py-2 text-sm font-mediumfocus:z-20"
+      [ngClass]="{
+        'pointer-events-none border-gray-300': currentPage <= 1,
+        'border-pink-600': currentPage > 1
+      }"
+      aria-label="Previous"
+      (click)="handlePreviousClick()"
     >
-      <button
-        id="pagination-previous"
-        href="#"
-        class="relative inline-flex items-center rounded-l-md border bg-white px-2 py-2 text-sm font-mediumfocus:z-20"
+      <!-- Heroicon name: mini/chevron-left -->
+      <svg
+        class="h-5 w-5 text-pink-600"
         [ngClass]="{
-          'pointer-events-none border-gray-300': currentPage <= 1,
-          'border-pink-600': currentPage > 1
+          'text-gray-300': currentPage <= 1,
+          'text-pink-600': currentPage > 1
         }"
-        aria-label="Previous"
-        (click)="handlePreviousClick()"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
       >
-        <!-- Heroicon name: mini/chevron-left -->
-        <svg
-          class="h-5 w-5 text-pink-600"
-          [ngClass]="{
-            'text-gray-300': currentPage <= 1,
-            'text-pink-600': currentPage > 1
-          }"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
+        <path
+          fill-rule="evenodd"
+          d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
 
-      <div class="px-4 flex items-center">
-        <p id="pagination-showing-page" class="text-sm text-gray-700">Showing page: {{ currentPage }}</p>
-      </div>
+    <!-- SHOW PAGE -->
+    <div class="px-4 flex items-center">
+      <p id="pagination-showing-page" class="text-sm text-gray-700">
+        Showing page: {{ currentPage }}
+      </p>
+    </div>
 
-      <button
-        id="pagination-next"
-        href="#"
-        class="relative inline-flex items-center rounded-r-md border border-pink-600 bg-white px-2 py-2 text-sm font-medium focus:z-20"
+    <!-- NEXT BUTTON -->
+    <button
+      id="pagination-next"
+      href="#"
+      class="relative inline-flex items-center rounded-r-md border border-pink-600 bg-white px-2 py-2 text-sm font-medium focus:z-20"
+      [ngClass]="{
+        'pointer-events-none border-gray-300': nextDisabled,
+        'border-pink-600': !nextDisabled
+      }"
+      aria-label="Next"
+      (click)="handleNextClick()"
+    >
+      <!-- Heroicon name: mini/chevron-right -->
+      <svg
+        class="h-5 w-5"
         [ngClass]="{
-          'pointer-events-none border-gray-300': nextDisabled,
-          'border-pink-600': !nextDisabled
+          'text-gray-300': nextDisabled,
+          'text-pink-600': !nextDisabled
         }"
-        aria-label="Next"
-        (click)="handleNextClick()"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
       >
-        <!-- Heroicon name: mini/chevron-right -->
-        <svg
-          class="h-5 w-5"
-          [ngClass]="{
-            'text-gray-300': nextDisabled,
-            'text-pink-600': !nextDisabled
-          }"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
-    </nav>
-  </div>
+        <path
+          fill-rule="evenodd"
+          d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </nav>
 </div>

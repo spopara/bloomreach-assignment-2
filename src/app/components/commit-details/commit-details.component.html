@@ -1,4 +1,5 @@
 <section>
+  <!-- BACK CONTROL -->
   <div class="m-4 text-pink-600 cursor-pointer">
     <svg
       id="commit-details-back"
@@ -21,7 +22,9 @@
     </svg>
   </div>
 
+  <!-- DATA CARD -->
   <div class="mx-16 bg-white overflow-hidden">
+    <!-- USER INFO -->
     <div class="px-4 py-5 sm:px-6 bg-gray-800 rounded-tl-lg rounded-tr-lg">
       <h3
         id="commit-details-name"
@@ -36,8 +39,11 @@
         {{ selectedCommit?.commit?.committer?.date | date }}
       </p>
     </div>
+
+    <!-- COMMIT INFO -->
     <div class="border-t border-gray-200">
       <dl>
+        <!-- SHA -->
         <div
           class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r border-gray-800"
         >
@@ -50,6 +56,8 @@
             {{ selectedCommit?.sha }}
           </dd>
         </div>
+
+        <!-- MESSAGE -->
         <div
           class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r border-gray-800"
         >
@@ -62,6 +70,8 @@
             {{ selectedCommit?.commit?.message }}
           </dd>
         </div>
+
+        <!-- URL -->
         <div
           class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-l border-r rounded-bl-lg rounded-br-lg border-gray-800"
         >
