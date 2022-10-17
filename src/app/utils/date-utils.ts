@@ -16,20 +16,24 @@ export class DateUtils {
   }
 
   /**
-   * Creates date without time component.
+   * Creates a date without a time component.
    *
-   * @returns - a date as ISO string without the time component
+   * @param date - a date from which to remove the time
+   * @returns  - an ISO date string
    */
   static createDateWithoutTime(date: Date): string {
     return date.toISOString().substring(0, 10);
   }
 
   /**
-   * Add time component to a date.
+   * Creates date with time set to 00:00:00.000.
    *
-   * @returns - date as ISO string with time component set to 00:00:00.000
+   * @param date - a date to set to 0 time
+   * @returns - an ISO date string
    */
-  static createDateWithTime(date: string): string {
-    return `${date}T00:00:00.000Z`;
+  static createDateWithZeroTime(date: Date): string {
+    const dateComponent = this.createDateWithoutTime(date);
+
+    return `${dateComponent}T00:00:00.000Z`;
   }
 }

@@ -33,7 +33,7 @@ describe('DateUtils', () => {
   describe('createDateWithTime', () => {
     it('should return correct date with time', () => {
       const expectedDate = '1950-11-13T00:00:00.000Z';
-      const date = DateUtils.createDateWithTime('1950-11-13');
+      const date = DateUtils.createDateWithZeroTime(new Date(dummyDate));
 
       expect(date).toEqual(expectedDate);
     });

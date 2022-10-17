@@ -29,7 +29,7 @@ export class CommitListComponent implements OnInit {
   getCommits(since: string, page: number): void {
     this.githubService
       .fetchCommits(
-        DateUtils.createDateWithTime(since),
+        DateUtils.createDateWithZeroTime(new Date(since)),
         page,
         GITHUB_REPO_VSCODE
       )
