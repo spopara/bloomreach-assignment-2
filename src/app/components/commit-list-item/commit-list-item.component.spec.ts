@@ -3,11 +3,10 @@ import {
   ComponentFixture,
   fakeAsync,
   TestBed,
-  tick,
+  tick
 } from '@angular/core/testing';
-import { GithubCommit } from 'src/app/services/github.service';
+import { GithubCommit, GithubService } from 'src/app/services/github.service';
 import { TestUtils } from 'src/app/utils/test-utils';
-
 import { CommitListItemComponent } from './commit-list-item.component';
 
 describe('CommitListItemComponent', () => {
@@ -19,11 +18,20 @@ describe('CommitListItemComponent', () => {
   );
   let component: CommitListItemComponent;
   let fixture: ComponentFixture<CommitListItemComponent>;
+  let fakeGithubService: GithubService;
 
   beforeEach(async () => {
+    fakeGithubService = TestUtils.createFakeGithubService();
+
     await TestBed.configureTestingModule({
       declarations: [CommitListItemComponent],
       imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: GithubService,
+          useValue: fakeGithubService,
+        },
+      ],
     }).compileComponents();
   });
 
@@ -57,12 +65,11 @@ describe('CommitListItemComponent', () => {
     expect(compiled.querySelector('#commit-list-item-icon svg')).toBeTruthy();
   });
 
-  it('should handle event on expand icon click', fakeAsync(() => {
-    spyOn(component, 'handleExpandCommitClick');
+  it('should handle expand icon click', fakeAsync(() => {
     fixture.debugElement.nativeElement
       .querySelector('#commit-list-item-icon')
       .click();
     tick();
-    expect(component.handleExpandCommitClick).toHaveBeenCalled();
+    expect(fakeGithubService.selectCommit).toHaveBeenCalled();
   }));
 });

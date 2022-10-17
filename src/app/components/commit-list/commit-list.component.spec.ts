@@ -1,6 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { GithubCommit, GithubService } from 'src/app/services/github.service';
 import { TestUtils } from 'src/app/utils/test-utils';
 import { CommitListItemComponent } from '../commit-list-item/commit-list-item.component';
@@ -23,11 +22,14 @@ describe('CommitListComponent', () => {
   let fixture: ComponentFixture<CommitListComponent>;
 
   beforeEach(async () => {
-    fakeGithubService = jasmine.createSpyObj<GithubService>('GithubService', {
-      fetchCommits: of(dummyCommitArray),
-    });
+    fakeGithubService = TestUtils.createFakeGithubService(dummyCommitArray);
+
     await TestBed.configureTestingModule({
-      declarations: [CommitListComponent, CommitListItemComponent, PaginationComponent],
+      declarations: [
+        CommitListComponent,
+        CommitListItemComponent,
+        PaginationComponent,
+      ],
       imports: [HttpClientTestingModule],
       providers: [
         {
@@ -46,6 +48,10 @@ describe('CommitListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get commits on init', () => {
+    expect(component.commits).toEqual(dummyCommitArray);
   });
 
   it('should render commit messages title', () => {

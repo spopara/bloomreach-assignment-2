@@ -1,4 +1,5 @@
-import { GithubCommit } from '../services/github.service';
+import { of } from 'rxjs';
+import { GithubCommit, GithubService } from '../services/github.service';
 
 export class TestUtils {
   /**
@@ -31,5 +32,20 @@ export class TestUtils {
     };
 
     return defaultCommit;
+  }
+
+  static createFakeGithubService(commits: GithubCommit[] = []): GithubService {
+    const fakeGithubService = jasmine.createSpyObj<GithubService>(
+      'GithubService',
+      {
+        fetchCommits: of(commits),
+        selectCommit: undefined,
+      }
+    );
+    Object.defineProperty(fakeGithubService, 'selectedCommit$', {
+      value: of(commits[0]),
+    });
+
+    return fakeGithubService;
   }
 }

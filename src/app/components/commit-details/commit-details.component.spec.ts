@@ -3,30 +3,36 @@ import {
   ComponentFixture,
   fakeAsync,
   TestBed,
-  tick,
+  tick
 } from '@angular/core/testing';
-import { GithubCommit } from 'src/app/services/github.service';
+import { GithubCommit, GithubService } from 'src/app/services/github.service';
 import { TestUtils } from 'src/app/utils/test-utils';
-
 import { CommitDetailsComponent } from './commit-details.component';
 
 describe('CommitDetailsComponent', () => {
+  const dummyCommit: GithubCommit = TestUtils.createGithubCommit();
   let component: CommitDetailsComponent;
   let fixture: ComponentFixture<CommitDetailsComponent>;
-  const dummyCommit: GithubCommit = TestUtils.createGithubCommit();
+  let fakeGithubService: GithubService;
 
   beforeEach(async () => {
+    fakeGithubService = TestUtils.createFakeGithubService([dummyCommit]);
+
     await TestBed.configureTestingModule({
       declarations: [CommitDetailsComponent],
       imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: GithubService,
+          useValue: fakeGithubService,
+        },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommitDetailsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // let initial subject emit 'null' pass
-    component.selectedCommit = dummyCommit;
     fixture.detectChanges();
   });
 
@@ -39,13 +45,12 @@ describe('CommitDetailsComponent', () => {
     expect(compiled.querySelector('#commit-details-back')).toBeTruthy();
   });
 
-  it('should call handleBackClick on back icon click', fakeAsync(() => {
-    spyOn(component, 'handleBackClick');
+  it('should handle back icon click', fakeAsync(() => {
     fixture.debugElement.nativeElement
       .querySelector('#commit-details-back')
       .dispatchEvent(new Event('click'));
     tick();
-    expect(component.handleBackClick).toHaveBeenCalled();
+    expect(fakeGithubService.selectCommit).toHaveBeenCalled();
   }));
 
   it('should render author name', () => {
