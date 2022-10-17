@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { GithubCommit, GithubService } from 'src/app/services/github.service';
 import { TestUtils } from 'src/app/utils/test-utils';
 import { CommitListItemComponent } from '../commit-list-item/commit-list-item.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 import { CommitListComponent } from './commit-list.component';
 
 describe('CommitListComponent', () => {
@@ -26,7 +27,7 @@ describe('CommitListComponent', () => {
       fetchCommits: of(dummyCommitArray),
     });
     await TestBed.configureTestingModule({
-      declarations: [CommitListComponent, CommitListItemComponent],
+      declarations: [CommitListComponent, CommitListItemComponent, PaginationComponent],
       imports: [HttpClientTestingModule],
       providers: [
         {

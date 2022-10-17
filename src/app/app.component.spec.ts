@@ -1,13 +1,15 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CommitDetailsComponent } from './components/commit-details/commit-details.component';
 import { CommitListComponent } from './components/commit-list/commit-list.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [AppComponent, CommitListComponent],
+      declarations: [AppComponent, CommitListComponent, CommitDetailsComponent, PaginationComponent],
     }).compileComponents();
   });
 
